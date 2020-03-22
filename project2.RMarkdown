@@ -1,0 +1,13 @@
+
+```{r db_setup}
+library(RSQLite)
+Lahman <- data('./lahman2016.sqlite')
+db <- DBI::dbConnect(RSQLite::SQLite(), Lahman)
+
+```
+
+``` {sql, connection=db}
+SELECT *
+  FROM Batting
+
+```
