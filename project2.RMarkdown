@@ -57,22 +57,27 @@ library(ggplot2)
 dist_df %>% 
   group_by(team) %>% 
   mutate(log_payroll = log(payroll)) %>% 
-  ggplot(aes(x=year, y=log_payroll)) + 
-  geom_point() +
-  geom_smooth(method="lm")
+  mutate(yearRange = ifelse(1989 < year & year <= 1994, paste("1989-1994"), 
+                ifelse(1994 < year & year <= 1999, paste("1994-1999"),
+                ifelse(1999 < year & year <= 2004, paste("1999-2004"),
+                ifelse(2004 < year & year <= 2009, paste("2004-2009"),
+                       paste("2009-2014")))))) %>% 
+  ggplot(aes(x=yearRange, y=log_payroll)) + 
+  geom_boxplot() +
+  labs(x="Year Range", y="Log Payroll")
   
 ```
 
 #### Question 1. What statements can you make about the distribution of payrolls conditioned on time based on these plots? Remember you can make statements in terms of central tendency, spread, etc.
 
-The trendline shows a clear increasing central tendency, although it seems the spread of the data has also slightly increased over time as well. It can also be seen that 2006 was the first year that the top payroll began decreaasing, and the upper end of the payroll scale seemed to flatten out after that. Most of the outliers reside on the lower end of the payroll scale, whereas at the upper end there are only a few.
+There is a clear increasing central tendency, although it seems the spread of the data has also slightly increased over time as well. It can also be seen that the upper end of the payroll scale seemed to flatten out after 2004. Most of the outliers reside on the lower end of the payroll scale, whereas at the upper end there is only one.
 
 ### Problem 3. Write code to produce a plot (or plots) that specifically shows at least one of the statements you made in Question 1. For example, if you make a statement that there is a trend for payrolls to decrease over time, make a plot of a statistic for central tendency (e.g., mean payroll) vs. time to show that specifically.
 
-The statement I am going to prove is that the maximum payrolls stopped increasing so sharply after 2005. I did this by graphing strictly the max payrolls between the years 1990 and 2014. The graph clearly shows a steep decline in the slope of the graph after 2005, showing that the payrolls stopped increasing as sharply at that point.
+The statement I am going to prove is that the maximum payrolls stopped increasing significantly after 2004. I did this by graphing strictly the max payrolls between the years 1990 and 2014. The graph clearly shows a steep decline in the slope of the graph after 2005, showing that the payrolls stopped increasing as sharply at that point.
 
 
-```{sql dist, connection=db, output.var="max_df"}
+```{sql max, connection=db, output.var="max_df"}
 select year, max(payroll) as max_payroll
 from
   (select Salaries.yearID as year, 
@@ -98,13 +103,60 @@ max_df %>%
 
 ### Problem 4. Write code to discretize year into five time periods (e.g., using the cut function with parameter breaks=5 (in R, bins=5 in python) and then make a scatterplot showing mean winning percentage (y-axis) vs. mean payroll (x-axis) for each of the five time periods. You could add a regression line (using geom_smooth(method=lm)) in each scatter plot to ease interpretation. Note: look at the discussion on faceting in the visualization EDA lecture notes.
 
-``` {sql}
-
-
+``` {sql win_pay, connection=db, output.var="winpay"}
+select Salaries.yearID as year, 
+  Teams.teamID as team, 
+  (cast(sum(Teams.W) as float) / sum(Teams.G))*100 as win_percentage,
+  sum(Salaries.salary) as payroll
+from Salaries
+join Teams
+on Salaries.teamID = Teams.teamID 
+and Salaries.yearID = Teams.yearID
+where year between 1990 and 2014
+group by year, team
 
 ```
 
 ```{r time_periods}
-time_periods <- cut(1989:2014, breaks = 5)
+library(gridExtra)
+
+data_ranges <- split(winpay, cut(winpay$year, breaks = 5))
+
+p1 <- data_ranges$`(1990,1995]` %>% 
+  mutate(log_payroll = log(payroll)) %>% 
+  ggplot(aes(x=log_payroll, y=win_percentage)) +
+  ggtitle('(1990,1995]') +
+  geom_point() + 
+  geom_smooth(method=lm)
+p2 <- data_ranges$`(1995,2000]` %>% 
+  mutate(log_payroll = log(payroll)) %>% 
+  ggplot(aes(x=log_payroll, y=win_percentage)) +
+  ggtitle('(1995,2000]') +
+  geom_point() +
+  geom_smooth(method=lm)
+p3 <- data_ranges$`(2000,2004]` %>% 
+  mutate(log_payroll = log(payroll)) %>% 
+  ggplot(aes(x=log_payroll, y=win_percentage)) +
+  ggtitle('(2000,2004]') +
+  geom_point() +
+  geom_smooth(method=lm)
+p4 <- data_ranges$`(2004,2009]` %>% 
+  mutate(log_payroll = log(payroll)) %>% 
+  ggplot(aes(x=log_payroll, y=win_percentage)) +
+  ggtitle('(2004,2009]') +
+  geom_point() +
+  geom_smooth(method=lm)
+p5 <- data_ranges$`(2009,2014]` %>% 
+  mutate(log_payroll = log(payroll)) %>% 
+  ggplot(aes(x=log_payroll, y=win_percentage)) +
+  ggtitle('(2009,2014]') +
+  geom_point() +
+  geom_smooth(method=lm)
+
+grid.arrange(p1, p2, p3, p4, p5, nrow=3)
 
 ```
+
+#### Question 2. What can you say about team payrolls across these periods? Are there any teams that standout as being particularly good at paying for wins across these time periods? What can you say about the Oakland A’s spending efficiency across these time periods (labeling some points in the scatterplot can help interpretation).
+
+I can say that as a general trend, win percentages have a positive increase as a team's payroll increases, but there's so much variance in these plots that it is hard to call this a causation relationship. It seems that the time period when these two variables were most strongly correlated was the 1995 to 2000 time period.
