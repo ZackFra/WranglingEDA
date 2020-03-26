@@ -8,7 +8,7 @@ output:
 
 
 ### Setting up the connection
-```{r}
+```{r setup, message=FALSE}
 library(tidyverse)
 library(RSQLite)
 db <- DBI::dbConnect(RSQLite::SQLite(), "lahman2016.sqlite")
