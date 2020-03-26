@@ -168,7 +168,7 @@ The most obvious difference is the slope of the trendline has noticably increase
 
 ### Problem 7. Make a single scatter plot of winning percentage (y-axis) vs. standardized payroll (x-axis). Add a regression line to highlight the relationship (again using geom_smooth(method=lm)).
 
-```{r}
+```{r plot_all}
 winpay %>% 
   ggplot(aes(x=Payroll_Z_Score, y=win_percentage)) +
   geom_point() +
