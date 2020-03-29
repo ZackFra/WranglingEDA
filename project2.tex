@@ -1,0 +1,1159 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{hyperref}
+\hypersetup{
+            pdftitle={Report},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+
+\title{Report}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\hypertarget{data-wrangling-and-exploratory-data-analysis}{%
+\section{Data Wrangling and Exploratory Data
+Analysis}\label{data-wrangling-and-exploratory-data-analysis}}
+
+\hypertarget{setting-up-the-connection}{%
+\subsubsection{Setting up the
+connection}\label{setting-up-the-connection}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(RSQLite)}
+\NormalTok{db <-}\StringTok{ }\NormalTok{DBI}\OperatorTok{::}\KeywordTok{dbConnect}\NormalTok{(RSQLite}\OperatorTok{::}\KeywordTok{SQLite}\NormalTok{(), }\StringTok{"lahman2016.sqlite"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{problem-1-using-sql-write-a-query-to-compute-the-total-payroll-and-winning-percentage-number-of-wins-number-of-games-100-for-each-team-that-is-for-each-teamid-and-yearid-combination.-you-should-include-other-columns-that-will-help-when-performing-eda-later-on-e.g.-franchise-ids-number-of-wins-number-of-games.}{%
+\subsubsection{Problem 1 Using SQL, write a query to compute the total
+payroll and winning percentage (number of wins / number of games * 100)
+for each team (that is, for each teamID and yearID combination). You
+should include other columns that will help when performing EDA later on
+(e.g., franchise ids, number of wins, number of
+games).}\label{problem-1-using-sql-write-a-query-to-compute-the-total-payroll-and-winning-percentage-number-of-wins-number-of-games-100-for-each-team-that-is-for-each-teamid-and-yearid-combination.-you-should-include-other-columns-that-will-help-when-performing-eda-later-on-e.g.-franchise-ids-number-of-wins-number-of-games.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{select}\NormalTok{ Salaries.yearID }\KeywordTok{as} \DataTypeTok{year}\NormalTok{, }
+\NormalTok{  Teams.teamID }\KeywordTok{as}\NormalTok{ team, }
+\NormalTok{  (}\FunctionTok{cast}\NormalTok{(}\FunctionTok{sum}\NormalTok{(Teams.W) }\KeywordTok{as} \DataTypeTok{float}\NormalTok{) / }\FunctionTok{sum}\NormalTok{(Teams.G))*}\DecValTok{100} \KeywordTok{as}\NormalTok{ win_percentage,}
+\NormalTok{  franchName,}
+  \FunctionTok{sum}\NormalTok{(Salaries.salary) }\KeywordTok{as}\NormalTok{ payroll}
+\KeywordTok{from}\NormalTok{ Salaries}
+\KeywordTok{join}\NormalTok{ Teams}
+\KeywordTok{on}\NormalTok{ Salaries.teamID = Teams.teamID }
+\KeywordTok{and}\NormalTok{ Salaries.yearID = Teams.yearID}
+\KeywordTok{join}\NormalTok{ TeamsFranchises}
+\KeywordTok{on}\NormalTok{ Teams.franchID = TeamsFranchises.franchID}
+\KeywordTok{where} \DataTypeTok{year} \KeywordTok{between} \DecValTok{1990} \KeywordTok{and} \DecValTok{2014}
+\KeywordTok{group} \KeywordTok{by} \DataTypeTok{year}\NormalTok{, team}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{winpay}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     year team win_percentage                    franchName   payroll
+## 1   1990  ATL       40.12346                Atlanta Braves  14555501
+## 2   1990  BAL       47.20497             Baltimore Orioles   9680084
+## 3   1990  BOS       54.32099                Boston Red Sox  20558333
+## 4   1990  CAL       49.38272 Los Angeles Angels of Anaheim  21720000
+## 5   1990  CHA       58.02469             Chicago White Sox   9491500
+## 6   1990  CHN       47.53086                  Chicago Cubs  13624000
+## 7   1990  CIN       56.17284               Cincinnati Reds  14370000
+## 8   1990  CLE       47.53086             Cleveland Indians  14487000
+## 9   1990  DET       48.76543                Detroit Tigers  17593238
+## 10  1990  HOU       46.29630                Houston Astros  18330000
+## 11  1990  KCA       46.58385            Kansas City Royals  23361084
+## 12  1990  LAN       53.08642           Los Angeles Dodgers  21318704
+## 13  1990  MIN       45.67901               Minnesota Twins  14602000
+## 14  1990  ML4       45.67901             Milwaukee Brewers  19719167
+## 15  1990  MON       52.46914          Washington Nationals  16586388
+## 16  1990  NYA       41.35802              New York Yankees  20912318
+## 17  1990  NYN       56.17284                 New York Mets  21722834
+## 18  1990  OAK       63.58025             Oakland Athletics  19887501
+## 19  1990  PHI       47.53086         Philadelphia Phillies  13173667
+## 20  1990  PIT       58.64198            Pittsburgh Pirates  15556000
+## 21  1990  SDN       46.29630              San Diego Padres  17588334
+## 22  1990  SEA       47.53086              Seattle Mariners  12553667
+## 23  1990  SFN       52.46914          San Francisco Giants  19335333
+## 24  1990  SLN       43.20988           St. Louis Cardinals  20523334
+## 25  1990  TEX       51.23457                 Texas Rangers  14874372
+## 26  1990  TOR       53.08642             Toronto Blue Jays  17756834
+## 27  1991  ATL       58.02469                Atlanta Braves  18403500
+## 28  1991  BAL       41.35802             Baltimore Orioles  17519000
+## 29  1991  BOS       51.85185                Boston Red Sox  35167500
+## 30  1991  CAL       50.00000 Los Angeles Angels of Anaheim  33060001
+## 31  1991  CHA       53.70370             Chicago White Sox  16919667
+## 32  1991  CHN       48.12500                  Chicago Cubs  23175667
+## 33  1991  CIN       45.67901               Cincinnati Reds  26305333
+## 34  1991  CLE       35.18519             Cleveland Indians  17635000
+## 35  1991  DET       51.85185                Detroit Tigers  23838333
+## 36  1991  HOU       40.12346                Houston Astros  12852500
+## 37  1991  KCA       50.61728            Kansas City Royals  26319834
+## 38  1991  LAN       57.40741           Los Angeles Dodgers  32790664
+## 39  1991  MIN       58.64198               Minnesota Twins  23361833
+## 40  1991  ML4       51.23457             Milwaukee Brewers  23115500
+## 41  1991  MON       44.09938          Washington Nationals  10732333
+## 42  1991  NYA       43.82716              New York Yankees  27344168
+## 43  1991  NYN       47.82609                 New York Mets  32590001
+## 44  1991  OAK       51.85185             Oakland Athletics  36999167
+## 45  1991  PHI       48.14815         Philadelphia Phillies  22487332
+## 46  1991  PIT       60.49383            Pittsburgh Pirates  23634667
+## 47  1991  SDN       51.85185              San Diego Padres  22150001
+## 48  1991  SEA       51.23457              Seattle Mariners  15691833
+## 49  1991  SFN       46.29630          San Francisco Giants  30967666
+## 50  1991  SLN       51.85185           St. Louis Cardinals  21860001
+## 51  1991  TEX       52.46914                 Texas Rangers  18224500
+## 52  1991  TOR       56.17284             Toronto Blue Jays  19902417
+## 53  1992  ATL       60.49383                Atlanta Braves  34625333
+## 54  1992  BAL       54.93827             Baltimore Orioles  23780667
+## 55  1992  BOS       45.06173                Boston Red Sox  43610584
+## 56  1992  CAL       44.44444 Los Angeles Angels of Anaheim  34749334
+## 57  1992  CHA       53.08642             Chicago White Sox  30160833
+## 58  1992  CHN       48.14815                  Chicago Cubs  29829686
+## 59  1992  CIN       55.55556               Cincinnati Reds  35931499
+## 60  1992  CLE       46.91358             Cleveland Indians   9373044
+## 61  1992  DET       46.29630                Detroit Tigers  27322834
+## 62  1992  HOU       50.00000                Houston Astros  15407500
+## 63  1992  KCA       44.44444            Kansas City Royals  33893834
+## 64  1992  LAN       38.88889           Los Angeles Dodgers  44788166
+## 65  1992  MIN       55.55556               Minnesota Twins  28027834
+## 66  1992  ML4       56.79012             Milwaukee Brewers  31013667
+## 67  1992  MON       53.70370          Washington Nationals  15822334
+## 68  1992  NYA       46.91358              New York Yankees  37543334
+## 69  1992  NYN       44.44444                 New York Mets  44602002
+## 70  1992  OAK       59.25926             Oakland Athletics  41035000
+## 71  1992  PHI       43.20988         Philadelphia Phillies  24383834
+## 72  1992  PIT       59.25926            Pittsburgh Pirates  33944167
+## 73  1992  SDN       50.61728              San Diego Padres  26854167
+## 74  1992  SEA       39.50617              Seattle Mariners  23179833
+## 75  1992  SFN       44.44444          San Francisco Giants  33163168
+## 76  1992  SLN       51.23457           St. Louis Cardinals  27583836
+## 77  1992  TEX       47.53086                 Texas Rangers  30128167
+## 78  1992  TOR       59.25926             Toronto Blue Jays  44788666
+## 79  1993  ATL       64.19753                Atlanta Braves  41641417
+## 80  1993  BAL       52.46914             Baltimore Orioles  29096500
+## 81  1993  BOS       49.38272                Boston Red Sox  37120583
+## 82  1993  CAL       43.82716 Los Angeles Angels of Anaheim  28588334
+## 83  1993  CHA       58.02469             Chicago White Sox  39696166
+## 84  1993  CHN       51.53374                  Chicago Cubs  39386666
+## 85  1993  CIN       45.06173               Cincinnati Reds  44879666
+## 86  1993  CLE       46.91358             Cleveland Indians  18561000
+## 87  1993  COL       41.35802              Colorado Rockies  10353500
+## 88  1993  DET       52.46914                Detroit Tigers  38150165
+## 89  1993  FLO       39.50617               Florida Marlins  19330545
+## 90  1993  HOU       52.46914                Houston Astros  30210500
+## 91  1993  KCA       51.85185            Kansas City Royals  41346167
+## 92  1993  LAN       50.00000           Los Angeles Dodgers  39331999
+## 93  1993  MIN       43.82716               Minnesota Twins  28217933
+## 94  1993  ML4       42.59259             Milwaukee Brewers  23806834
+## 95  1993  MON       57.66871          Washington Nationals  18899333
+## 96  1993  NYA       54.32099              New York Yankees  42624900
+## 97  1993  NYN       36.41975                 New York Mets  39043667
+## 98  1993  OAK       41.97531             Oakland Athletics  37812333
+## 99  1993  PHI       59.87654         Philadelphia Phillies  28538334
+## 100 1993  PIT       46.29630            Pittsburgh Pirates  24822467
+## 101 1993  SDN       37.65432              San Diego Padres  25511333
+## 102 1993  SEA       50.61728              Seattle Mariners  32696333
+## 103 1993  SFN       63.58025          San Francisco Giants  35050000
+## 104 1993  SLN       53.70370           St. Louis Cardinals  23367334
+## 105 1993  TEX       53.08642                 Texas Rangers  36376959
+## 106 1993  TOR       58.64198             Toronto Blue Jays  47279166
+## 107 1994  ATL       59.64912                Atlanta Braves  49383513
+## 108 1994  BAL       56.25000             Baltimore Orioles  38849769
+## 109 1994  BOS       46.95652                Boston Red Sox  37859084
+## 110 1994  CAL       40.86957 Los Angeles Angels of Anaheim  25156218
+## 111 1994  CHA       59.29204             Chicago White Sox  39183836
+## 112 1994  CHN       43.36283                  Chicago Cubs  36287333
+## 113 1994  CIN       57.39130               Cincinnati Reds  40961833
+## 114 1994  CLE       58.40708             Cleveland Indians  30490500
+## 115 1994  COL       45.29915              Colorado Rockies  23887333
+## 116 1994  DET       46.08696                Detroit Tigers  41446501
+## 117 1994  FLO       44.34783               Florida Marlins  21633000
+## 118 1994  HOU       57.39130                Houston Astros  33126000
+## 119 1994  KCA       55.65217            Kansas City Royals  40541334
+## 120 1994  LAN       50.87719           Los Angeles Dodgers  38000001
+## 121 1994  MIN       46.90265               Minnesota Twins  28438500
+## 122 1994  ML4       46.08696             Milwaukee Brewers  24350500
+## 123 1994  MON       64.91228          Washington Nationals  19098000
+## 124 1994  NYA       61.94690              New York Yankees  45731334
+## 125 1994  NYN       48.67257                 New York Mets  30956583
+## 126 1994  OAK       44.73684             Oakland Athletics  34172500
+## 127 1994  PHI       46.95652         Philadelphia Phillies  31599000
+## 128 1994  PIT       46.49123            Pittsburgh Pirates  24217250
+## 129 1994  SDN       40.17094              San Diego Padres  14916333
+## 130 1994  SEA       43.75000              Seattle Mariners  29228500
+## 131 1994  SFN       47.82609          San Francisco Giants  42638666
+## 132 1994  SLN       46.08696           St. Louis Cardinals  29275601
+## 133 1994  TEX       45.61404                 Texas Rangers  32973597
+## 134 1994  TOR       47.82609             Toronto Blue Jays  43433668
+## 135 1995  ATL       62.50000                Atlanta Braves  47235445
+## 136 1995  BAL       49.30556             Baltimore Orioles  43942521
+## 137 1995  BOS       59.72222                Boston Red Sox  32455518
+## 138 1995  CAL       53.79310 Los Angeles Angels of Anaheim  31223171
+## 139 1995  CHA       46.89655             Chicago White Sox  46961282
+## 140 1995  CHN       50.69444                  Chicago Cubs  29505834
+## 141 1995  CIN       59.02778               Cincinnati Reds  43144670
+## 142 1995  CLE       69.44444             Cleveland Indians  37937835
+## 143 1995  COL       53.47222              Colorado Rockies  34154717
+## 144 1995  DET       41.66667                Detroit Tigers  37044168
+## 145 1995  FLO       46.85315               Florida Marlins  24515781
+## 146 1995  HOU       52.77778                Houston Astros  34169834
+## 147 1995  KCA       48.61111            Kansas City Royals  29532834
+## 148 1995  LAN       54.16667           Los Angeles Dodgers  39273201
+## 149 1995  MIN       38.88889               Minnesota Twins  25410500
+## 150 1995  ML4       45.13889             Milwaukee Brewers  17798825
+## 151 1995  MON       45.83333          Washington Nationals  12364000
+## 152 1995  NYA       54.48276              New York Yankees  48874851
+## 153 1995  NYN       47.91667                 New York Mets  27674992
+## 154 1995  OAK       46.52778             Oakland Athletics  37739225
+## 155 1995  PHI       47.91667         Philadelphia Phillies  30555945
+## 156 1995  PIT       40.27778            Pittsburgh Pirates  18355345
+## 157 1995  SDN       48.61111              San Diego Padres  26382334
+## 158 1995  SEA       54.48276              Seattle Mariners  36481311
+## 159 1995  SFN       46.52778          San Francisco Giants  36462777
+## 160 1995  SLN       43.35664           St. Louis Cardinals  37101000
+## 161 1995  TEX       51.38889                 Texas Rangers  34581451
+## 162 1995  TOR       38.88889             Toronto Blue Jays  50590000
+## 163 1996  ATL       59.25926                Atlanta Braves  49698500
+## 164 1996  BAL       53.98773             Baltimore Orioles  54490315
+## 165 1996  BOS       52.46914                Boston Red Sox  42393500
+## 166 1996  CAL       43.47826 Los Angeles Angels of Anaheim  28738000
+## 167 1996  CHA       52.46914             Chicago White Sox  45139500
+## 168 1996  CHN       46.91358                  Chicago Cubs  33081000
+## 169 1996  CIN       50.00000               Cincinnati Reds  42526334
+## 170 1996  CLE       61.49068             Cleveland Indians  48107360
+## 171 1996  COL       51.23457              Colorado Rockies  40179823
+## 172 1996  DET       32.71605                Detroit Tigers  23438000
+## 173 1996  FLO       49.38272               Florida Marlins  31022500
+## 174 1996  HOU       50.61728                Houston Astros  28487000
+## 175 1996  KCA       46.58385            Kansas City Royals  20281250
+## 176 1996  LAN       55.55556           Los Angeles Dodgers  35355000
+## 177 1996  MIN       48.14815               Minnesota Twins  23117000
+## 178 1996  ML4       49.38272             Milwaukee Brewers  21730000
+## 179 1996  MON       54.32099          Washington Nationals  16264500
+## 180 1996  NYA       56.79012              New York Yankees  54191792
+## 181 1996  NYN       43.82716                 New York Mets  24479500
+## 182 1996  OAK       48.14815             Oakland Athletics  21243000
+## 183 1996  PHI       41.35802         Philadelphia Phillies  34314500
+## 184 1996  PIT       45.06173            Pittsburgh Pirates  23017500
+## 185 1996  SDN       56.17284              San Diego Padres  28348172
+## 186 1996  SEA       52.79503              Seattle Mariners  41328501
+## 187 1996  SFN       41.97531          San Francisco Giants  37144725
+## 188 1996  SLN       54.32099           St. Louis Cardinals  40269667
+## 189 1996  TEX       55.21472                 Texas Rangers  39041528
+## 190 1996  TOR       45.67901             Toronto Blue Jays  29555083
+## 191 1997  ANA       51.85185 Los Angeles Angels of Anaheim  31135472
+## 192 1997  ATL       62.34568                Atlanta Braves  52278500
+## 193 1997  BAL       60.49383             Baltimore Orioles  58516400
+## 194 1997  BOS       48.14815                Boston Red Sox  43558750
+## 195 1997  CHA       49.68944             Chicago White Sox  57740000
+## 196 1997  CHN       41.97531                  Chicago Cubs  42155333
+## 197 1997  CIN       46.91358               Cincinnati Reds  49768000
+## 198 1997  CLE       53.41615             Cleveland Indians  56802460
+## 199 1997  COL       51.23457              Colorado Rockies  43559667
+## 200 1997  DET       48.76543                Detroit Tigers  17272000
+## 201 1997  FLO       56.79012               Florida Marlins  48692500
+## 202 1997  HOU       51.85185                Houston Astros  34777500
+## 203 1997  KCA       41.61491            Kansas City Royals  34655000
+## 204 1997  LAN       54.32099           Los Angeles Dodgers  45380304
+## 205 1997  MIN       41.97531               Minnesota Twins  34072500
+## 206 1997  ML4       48.44720             Milwaukee Brewers  23655338
+## 207 1997  MON       48.14815          Washington Nationals  19295500
+## 208 1997  NYA       59.25926              New York Yankees  62241545
+## 209 1997  NYN       54.32099                 New York Mets  39800400
+## 210 1997  OAK       40.12346             Oakland Athletics  24018500
+## 211 1997  PHI       41.97531         Philadelphia Phillies  36656500
+## 212 1997  PIT       48.76543            Pittsburgh Pirates  10771667
+## 213 1997  SDN       46.91358              San Diego Padres  37363672
+## 214 1997  SEA       55.55556              Seattle Mariners  41540661
+## 215 1997  SFN       55.55556          San Francisco Giants  35592378
+## 216 1997  SLN       45.06173           St. Louis Cardinals  45456667
+## 217 1997  TEX       47.53086                 Texas Rangers  53448838
+## 218 1997  TOR       46.91358             Toronto Blue Jays  47079833
+## 219 1998  ANA       52.46914 Los Angeles Angels of Anaheim  41281000
+## 220 1998  ARI       40.12346          Arizona Diamondbacks  32347000
+## 221 1998  ATL       65.43210                Atlanta Braves  61186000
+## 222 1998  BAL       48.76543             Baltimore Orioles  72355634
+## 223 1998  BOS       56.79012                Boston Red Sox  56757000
+## 224 1998  CHA       49.07975             Chicago White Sox  38335000
+## 225 1998  CHN       55.21472                  Chicago Cubs  50838000
+## 226 1998  CIN       47.53086               Cincinnati Reds  23005000
+## 227 1998  CLE       54.93827             Cleveland Indians  60800166
+## 228 1998  COL       47.53086              Colorado Rockies  50484648
+## 229 1998  DET       40.12346                Detroit Tigers  24065000
+## 230 1998  FLO       33.33333               Florida Marlins  41322667
+## 231 1998  HOU       62.96296                Houston Astros  42374000
+## 232 1998  KCA       44.72050            Kansas City Royals  36862500
+## 233 1998  LAN       51.23457           Los Angeles Dodgers  48820000
+## 234 1998  MIL       45.67901             Milwaukee Brewers  33914904
+## 235 1998  MIN       43.20988               Minnesota Twins  27927500
+## 236 1998  MON       40.12346          Washington Nationals  10641500
+## 237 1998  NYA       70.37037              New York Yankees  66806867
+## 238 1998  NYN       54.32099                 New York Mets  52077999
+## 239 1998  OAK       45.67901             Oakland Athletics  21303000
+## 240 1998  PHI       46.29630         Philadelphia Phillies  36297500
+## 241 1998  PIT       42.33129            Pittsburgh Pirates  15065000
+## 242 1998  SDN       60.49383              San Diego Padres  46861500
+## 243 1998  SEA       47.20497              Seattle Mariners  54087036
+## 244 1998  SFN       54.60123          San Francisco Giants  42565834
+## 245 1998  SLN       50.92025           St. Louis Cardinals  54672521
+## 246 1998  TBA       38.88889                Tampa Bay Rays  27280000
+## 247 1998  TEX       54.32099                 Texas Rangers  56572095
+## 248 1998  TOR       53.98773             Toronto Blue Jays  51376000
+## 249 1999  ANA       43.20988 Los Angeles Angels of Anaheim  55388166
+## 250 1999  ARI       61.72840          Arizona Diamondbacks  68703999
+## 251 1999  ATL       63.58025                Atlanta Braves  73140000
+## 252 1999  BAL       48.14815             Baltimore Orioles  80605863
+## 253 1999  BOS       58.02469                Boston Red Sox  63497500
+## 254 1999  CHA       46.29630             Chicago White Sox  25620000
+## 255 1999  CHN       41.35802                  Chicago Cubs  62343000
+## 256 1999  CIN       58.89571               Cincinnati Reds  33962761
+## 257 1999  CLE       59.87654             Cleveland Indians  72978462
+## 258 1999  COL       44.44444              Colorado Rockies  61935837
+## 259 1999  DET       42.85714                Detroit Tigers  36489666
+## 260 1999  FLO       39.50617               Florida Marlins  21085000
+## 261 1999  HOU       59.87654                Houston Astros  54914000
+## 262 1999  KCA       39.75155            Kansas City Royals  26225000
+## 263 1999  LAN       47.53086           Los Angeles Dodgers  80862453
+## 264 1999  MIL       45.96273             Milwaukee Brewers  43377395
+## 265 1999  MIN       39.13043               Minnesota Twins  21257500
+## 266 1999  MON       41.97531          Washington Nationals  17903000
+## 267 1999  NYA       60.49383              New York Yankees  86734359
+## 268 1999  NYN       59.50920                 New York Mets  65092092
+## 269 1999  OAK       53.70370             Oakland Athletics  24431833
+## 270 1999  PHI       47.53086         Philadelphia Phillies  31692500
+## 271 1999  PIT       48.44720            Pittsburgh Pirates  24697666
+## 272 1999  SDN       45.67901              San Diego Padres  49768179
+## 273 1999  SEA       48.76543              Seattle Mariners  54125003
+## 274 1999  SFN       53.08642          San Francisco Giants  46595057
+## 275 1999  SLN       46.58385           St. Louis Cardinals  49778195
+## 276 1999  TBA       42.59259                Tampa Bay Rays  38870000
+## 277 1999  TEX       58.64198                 Texas Rangers  76709931
+## 278 1999  TOR       51.85185             Toronto Blue Jays  45444333
+## 279 2000  ANA       50.61728 Los Angeles Angels of Anaheim  51464167
+## 280 2000  ARI       52.46914          Arizona Diamondbacks  81027833
+## 281 2000  ATL       58.64198                Atlanta Braves  84537836
+## 282 2000  BAL       45.67901             Baltimore Orioles  81447435
+## 283 2000  BOS       52.46914                Boston Red Sox  77940333
+## 284 2000  CHA       58.64198             Chicago White Sox  31133500
+## 285 2000  CHN       40.12346                  Chicago Cubs  60539333
+## 286 2000  CIN       52.14724               Cincinnati Reds  46867200
+## 287 2000  CLE       55.55556             Cleveland Indians  75880771
+## 288 2000  COL       50.61728              Colorado Rockies  61111190
+## 289 2000  DET       48.76543                Detroit Tigers  58265167
+## 290 2000  FLO       49.06832               Florida Marlins  19872000
+## 291 2000  HOU       44.44444                Houston Astros  51289111
+## 292 2000  KCA       47.53086            Kansas City Royals  23433000
+## 293 2000  LAN       53.08642           Los Angeles Dodgers  87924286
+## 294 2000  MIL       44.78528             Milwaukee Brewers  36505333
+## 295 2000  MIN       42.59259               Minnesota Twins  16519500
+## 296 2000  MON       41.35802          Washington Nationals  32994333
+## 297 2000  NYA       54.03727              New York Yankees  92338260
+## 298 2000  NYN       58.02469                 New York Mets  79509776
+## 299 2000  OAK       56.52174             Oakland Athletics  31971333
+## 300 2000  PHI       40.12346         Philadelphia Phillies  47308000
+## 301 2000  PIT       42.59259            Pittsburgh Pirates  28928334
+## 302 2000  SDN       46.91358              San Diego Padres  54821000
+## 303 2000  SEA       56.17284              Seattle Mariners  58915000
+## 304 2000  SFN       59.87654          San Francisco Giants  53737826
+## 305 2000  SLN       58.64198           St. Louis Cardinals  61453863
+## 306 2000  TBA       42.85714                Tampa Bay Rays  62765129
+## 307 2000  TEX       43.82716                 Texas Rangers  70795921
+## 308 2000  TOR       51.23457             Toronto Blue Jays  44838332
+## 309 2001  ANA       46.29630 Los Angeles Angels of Anaheim  47535167
+## 310 2001  ARI       56.79012          Arizona Diamondbacks  85082999
+## 311 2001  ATL       54.32099                Atlanta Braves  91936166
+## 312 2001  BAL       38.88889             Baltimore Orioles  67599540
+## 313 2001  BOS       50.93168                Boston Red Sox 110035833
+## 314 2001  CHA       51.23457             Chicago White Sox  65653667
+## 315 2001  CHN       54.32099                  Chicago Cubs  64715833
+## 316 2001  CIN       40.74074               Cincinnati Reds  48986000
+## 317 2001  CLE       56.17284             Cleveland Indians  93152001
+## 318 2001  COL       45.06173              Colorado Rockies  71541334
+## 319 2001  DET       40.74074                Detroit Tigers  53416167
+## 320 2001  FLO       46.91358               Florida Marlins  35762500
+## 321 2001  HOU       57.40741                Houston Astros  60612667
+## 322 2001  KCA       40.12346            Kansas City Royals  35422500
+## 323 2001  LAN       53.08642           Los Angeles Dodgers 109105953
+## 324 2001  MIL       41.97531             Milwaukee Brewers  43886833
+## 325 2001  MIN       52.46914               Minnesota Twins  24130000
+## 326 2001  MON       41.97531          Washington Nationals  35159500
+## 327 2001  NYA       59.00621              New York Yankees 112287143
+## 328 2001  NYN       50.61728                 New York Mets  93174428
+## 329 2001  OAK       62.96296             Oakland Athletics  33810750
+## 330 2001  PHI       53.08642         Philadelphia Phillies  41663833
+## 331 2001  PIT       38.27160            Pittsburgh Pirates  57760833
+## 332 2001  SDN       48.76543              San Diego Padres  39182833
+## 333 2001  SEA       71.60494              Seattle Mariners  74720834
+## 334 2001  SFN       55.55556          San Francisco Giants  63280167
+## 335 2001  SLN       57.40741           St. Louis Cardinals  78538333
+## 336 2001  TBA       38.27160                Tampa Bay Rays  56980000
+## 337 2001  TEX       45.06173                 Texas Rangers  88633500
+## 338 2001  TOR       49.38272             Toronto Blue Jays  76895999
+## 339 2002  ANA       61.11111 Los Angeles Angels of Anaheim  61721667
+## 340 2002  ARI       60.49383          Arizona Diamondbacks 102819999
+## 341 2002  ATL       62.73292                Atlanta Braves  92870367
+## 342 2002  BAL       41.35802             Baltimore Orioles  60493487
+## 343 2002  BOS       57.40741                Boston Red Sox 108366060
+## 344 2002  CHA       50.00000             Chicago White Sox  57052833
+## 345 2002  CHN       41.35802                  Chicago Cubs  75690833
+## 346 2002  CIN       48.14815               Cincinnati Reds  45050390
+## 347 2002  CLE       45.67901             Cleveland Indians  78909449
+## 348 2002  COL       45.06173              Colorado Rockies  56851043
+## 349 2002  DET       34.16149                Detroit Tigers  55048000
+## 350 2002  FLO       48.76543               Florida Marlins  41979917
+## 351 2002  HOU       51.85185                Houston Astros  63448417
+## 352 2002  KCA       38.27160            Kansas City Royals  47257000
+## 353 2002  LAN       56.79012           Los Angeles Dodgers  94850953
+## 354 2002  MIL       34.56790             Milwaukee Brewers  50287833
+## 355 2002  MIN       58.38509               Minnesota Twins  40425000
+## 356 2002  MON       51.23457          Washington Nationals  38670500
+## 357 2002  NYA       63.97516              New York Yankees 125928583
+## 358 2002  NYN       46.58385                 New York Mets  94633593
+## 359 2002  OAK       63.58025             Oakland Athletics  40004167
+## 360 2002  PHI       49.68944         Philadelphia Phillies  57954999
+## 361 2002  PIT       44.72050            Pittsburgh Pirates  42323599
+## 362 2002  SDN       40.74074              San Diego Padres  41425000
+## 363 2002  SEA       57.40741              Seattle Mariners  80282668
+## 364 2002  SFN       58.64198          San Francisco Giants  78299835
+## 365 2002  SLN       59.87654           St. Louis Cardinals  74660875
+## 366 2002  TBA       34.16149                Tampa Bay Rays  34380000
+## 367 2002  TEX       44.44444                 Texas Rangers 105526122
+## 368 2002  TOR       48.14815             Toronto Blue Jays  76864333
+## 369 2003  ANA       47.53086 Los Angeles Angels of Anaheim  79031667
+## 370 2003  ARI       51.85185          Arizona Diamondbacks  80657000
+## 371 2003  ATL       62.34568                Atlanta Braves 106243667
+## 372 2003  BAL       43.55828             Baltimore Orioles  73877500
+## 373 2003  BOS       58.64198                Boston Red Sox  99946500
+## 374 2003  CHA       53.08642             Chicago White Sox  51010000
+## 375 2003  CHN       54.32099                  Chicago Cubs  79868333
+## 376 2003  CIN       42.59259               Cincinnati Reds  59355667
+## 377 2003  CLE       41.97531             Cleveland Indians  48584834
+## 378 2003  COL       45.67901              Colorado Rockies  67179667
+## 379 2003  DET       26.54321                Detroit Tigers  49168000
+## 380 2003  FLO       56.17284               Florida Marlins  49450000
+## 381 2003  HOU       53.70370                Houston Astros  71040000
+## 382 2003  KCA       51.23457            Kansas City Royals  40518000
+## 383 2003  LAN       52.46914           Los Angeles Dodgers 105572620
+## 384 2003  MIL       41.97531             Milwaukee Brewers  40627000
+## 385 2003  MIN       55.55556               Minnesota Twins  55505000
+## 386 2003  MON       51.23457          Washington Nationals  51948500
+## 387 2003  NYA       61.96319              New York Yankees 152749814
+## 388 2003  NYN       40.99379                 New York Mets 116876429
+## 389 2003  OAK       59.25926             Oakland Athletics  50260834
+## 390 2003  PHI       53.08642         Philadelphia Phillies  70780000
+## 391 2003  PIT       46.29630            Pittsburgh Pirates  54812429
+## 392 2003  SDN       39.50617              San Diego Padres  45210000
+## 393 2003  SEA       57.40741              Seattle Mariners  86959167
+## 394 2003  SFN       62.11180          San Francisco Giants  82852167
+## 395 2003  SLN       52.46914           St. Louis Cardinals  83786666
+## 396 2003  TBA       38.88889                Tampa Bay Rays  19630000
+## 397 2003  TEX       43.82716                 Texas Rangers 103491667
+## 398 2003  TOR       53.08642             Toronto Blue Jays  51269000
+## 399 2004  ANA       56.79012 Los Angeles Angels of Anaheim 100534667
+## 400 2004  ARI       31.48148          Arizona Diamondbacks  69780750
+## 401 2004  ATL       59.25926                Atlanta Braves  90182500
+## 402 2004  BAL       48.14815             Baltimore Orioles  51623333
+## 403 2004  BOS       60.49383                Boston Red Sox 127298500
+## 404 2004  CHA       51.23457             Chicago White Sox  65212500
+## 405 2004  CHN       54.93827                  Chicago Cubs  90560000
+## 406 2004  CIN       46.91358               Cincinnati Reds  46615250
+## 407 2004  CLE       49.38272             Cleveland Indians  34319300
+## 408 2004  COL       41.97531              Colorado Rockies  65445167
+## 409 2004  DET       44.44444                Detroit Tigers  46832000
+## 410 2004  FLO       51.23457               Florida Marlins  42143042
+## 411 2004  HOU       56.79012                Houston Astros  75397000
+## 412 2004  KCA       35.80247            Kansas City Royals  47609000
+## 413 2004  LAN       57.40741           Los Angeles Dodgers  92902001
+## 414 2004  MIL       41.61491             Milwaukee Brewers  27528500
+## 415 2004  MIN       56.79012               Minnesota Twins  53585000
+## 416 2004  MON       41.35802          Washington Nationals  40897500
+## 417 2004  NYA       62.34568              New York Yankees 184193950
+## 418 2004  NYN       43.82716                 New York Mets  96660970
+## 419 2004  OAK       56.17284             Oakland Athletics  59425667
+## 420 2004  PHI       53.08642         Philadelphia Phillies  92919167
+## 421 2004  PIT       44.72050            Pittsburgh Pirates  32227929
+## 422 2004  SDN       53.70370              San Diego Padres  55384833
+## 423 2004  SEA       38.88889              Seattle Mariners  81515834
+## 424 2004  SFN       56.17284          San Francisco Giants  82019166
+## 425 2004  SLN       64.81481           St. Louis Cardinals  83228333
+## 426 2004  TBA       43.47826                Tampa Bay Rays  29556667
+## 427 2004  TEX       54.93827                 Texas Rangers  55050417
+## 428 2004  TOR       41.61491             Toronto Blue Jays  50017000
+## 429 2005  ARI       47.53086          Arizona Diamondbacks  62329166
+## 430 2005  ATL       55.55556                Atlanta Braves  86457302
+## 431 2005  BAL       45.67901             Baltimore Orioles  73914333
+## 432 2005  BOS       58.64198                Boston Red Sox 123505125
+## 433 2005  CHA       61.11111             Chicago White Sox  75178000
+## 434 2005  CHN       48.76543                  Chicago Cubs  87032933
+## 435 2005  CIN       44.78528               Cincinnati Reds  61892583
+## 436 2005  CLE       57.40741             Cleveland Indians  41502500
+## 437 2005  COL       41.35802              Colorado Rockies  47839000
+## 438 2005  DET       43.82716                Detroit Tigers  69092000
+## 439 2005  FLO       51.23457               Florida Marlins  60408834
+## 440 2005  HOU       54.60123                Houston Astros  76779000
+## 441 2005  KCA       34.56790            Kansas City Royals  36881000
+## 442 2005  LAA       58.64198 Los Angeles Angels of Anaheim  94867822
+## 443 2005  LAN       43.82716           Los Angeles Dodgers  83039000
+## 444 2005  MIL       50.00000             Milwaukee Brewers  39934833
+## 445 2005  MIN       51.23457               Minnesota Twins  56186000
+## 446 2005  NYA       58.64198              New York Yankees 208306817
+## 447 2005  NYN       51.23457                 New York Mets 101305821
+## 448 2005  OAK       54.32099             Oakland Athletics  55425762
+## 449 2005  PHI       54.32099         Philadelphia Phillies  95522000
+## 450 2005  PIT       41.35802            Pittsburgh Pirates  38133000
+## 451 2005  SDN       50.61728              San Diego Padres  63290833
+## 452 2005  SEA       42.59259              Seattle Mariners  87754334
+## 453 2005  SFN       46.29630          San Francisco Giants  90199500
+## 454 2005  SLN       61.72840           St. Louis Cardinals  92106833
+## 455 2005  TBA       41.35802                Tampa Bay Rays  29679067
+## 456 2005  TEX       48.76543                 Texas Rangers  55849000
+## 457 2005  TOR       49.38272             Toronto Blue Jays  45719500
+## 458 2005  WAS       50.00000          Washington Nationals  48581500
+## 459 2006  ARI       46.91358          Arizona Diamondbacks  59684226
+## 460 2006  ATL       48.76543                Atlanta Braves  90156876
+## 461 2006  BAL       43.20988             Baltimore Orioles  72585582
+## 462 2006  BOS       53.08642                Boston Red Sox 120099824
+## 463 2006  CHA       55.55556             Chicago White Sox 102750667
+## 464 2006  CHN       40.74074                  Chicago Cubs  94424499
+## 465 2006  CIN       49.38272               Cincinnati Reds  60909519
+## 466 2006  CLE       48.14815             Cleveland Indians  56031500
+## 467 2006  COL       46.91358              Colorado Rockies  41233000
+## 468 2006  DET       58.64198                Detroit Tigers  82612866
+## 469 2006  FLO       48.14815               Florida Marlins  14671500
+## 470 2006  HOU       50.61728                Houston Astros  88694435
+## 471 2006  KCA       38.27160            Kansas City Royals  47294000
+## 472 2006  LAA       54.93827 Los Angeles Angels of Anaheim 103472000
+## 473 2006  LAN       54.32099           Los Angeles Dodgers  98447187
+## 474 2006  MIL       46.29630             Milwaukee Brewers  57568333
+## 475 2006  MIN       59.25926               Minnesota Twins  63396006
+## 476 2006  NYA       59.87654              New York Yankees 194663079
+## 477 2006  NYN       59.87654                 New York Mets 101084963
+## 478 2006  OAK       57.40741             Oakland Athletics  62243079
+## 479 2006  PHI       52.46914         Philadelphia Phillies  88273333
+## 480 2006  PIT       41.35802            Pittsburgh Pirates  46717750
+## 481 2006  SDN       54.32099              San Diego Padres  69896141
+## 482 2006  SEA       48.14815              Seattle Mariners  87959833
+## 483 2006  SFN       47.20497          San Francisco Giants  90056419
+## 484 2006  SLN       51.55280           St. Louis Cardinals  88891371
+## 485 2006  TBA       37.65432                Tampa Bay Rays  34917967
+## 486 2006  TEX       49.38272                 Texas Rangers  68228662
+## 487 2006  TOR       53.70370             Toronto Blue Jays  71365000
+## 488 2006  WAS       43.82716          Washington Nationals  63143000
+## 489 2007  ARI       55.55556          Arizona Diamondbacks  52067546
+## 490 2007  ATL       51.85185                Atlanta Braves  87290833
+## 491 2007  BAL       42.59259             Baltimore Orioles  93174808
+## 492 2007  BOS       59.25926                Boston Red Sox 143026214
+## 493 2007  CHA       44.44444             Chicago White Sox 108671833
+## 494 2007  CHN       52.46914                  Chicago Cubs  99670332
+## 495 2007  CIN       44.44444               Cincinnati Reds  68524980
+## 496 2007  CLE       59.25926             Cleveland Indians  61673267
+## 497 2007  COL       55.21472              Colorado Rockies  54041000
+## 498 2007  DET       54.32099                Detroit Tigers  94800369
+## 499 2007  FLO       43.82716               Florida Marlins  30507000
+## 500 2007  HOU       45.06173                Houston Astros  87759000
+## 501 2007  KCA       42.59259            Kansas City Royals  67116500
+## 502 2007  LAA       58.02469 Los Angeles Angels of Anaheim 109251333
+## 503 2007  LAN       50.61728           Los Angeles Dodgers 108454524
+## 504 2007  MIL       51.23457             Milwaukee Brewers  70986500
+## 505 2007  MIN       48.76543               Minnesota Twins  71439500
+## 506 2007  NYA       58.02469              New York Yankees 189259045
+## 507 2007  NYN       54.32099                 New York Mets 115231663
+## 508 2007  OAK       46.91358             Oakland Athletics  79366940
+## 509 2007  PHI       54.93827         Philadelphia Phillies  89428213
+## 510 2007  PIT       41.97531            Pittsburgh Pirates  38537833
+## 511 2007  SDN       54.60123              San Diego Padres  58110567
+## 512 2007  SEA       54.32099              Seattle Mariners 106460833
+## 513 2007  SFN       43.82716          San Francisco Giants  90219056
+## 514 2007  SLN       48.14815           St. Louis Cardinals  90286823
+## 515 2007  TBA       40.74074                Tampa Bay Rays  24123500
+## 516 2007  TEX       46.29630                 Texas Rangers  68318675
+## 517 2007  TOR       51.23457             Toronto Blue Jays  81942800
+## 518 2007  WAS       45.06173          Washington Nationals  36947500
+## 519 2008  ARI       50.61728          Arizona Diamondbacks  66202712
+## 520 2008  ATL       44.44444                Atlanta Braves 102365683
+## 521 2008  BAL       42.23602             Baltimore Orioles  67196246
+## 522 2008  BOS       58.64198                Boston Red Sox 133390035
+## 523 2008  CHA       54.60123             Chicago White Sox 121189332
+## 524 2008  CHN       60.24845                  Chicago Cubs 118345833
+## 525 2008  CIN       45.67901               Cincinnati Reds  74117695
+## 526 2008  CLE       50.00000             Cleveland Indians  78970066
+## 527 2008  COL       45.67901              Colorado Rockies  68655500
+## 528 2008  DET       45.67901                Detroit Tigers 137685196
+## 529 2008  FLO       52.17391               Florida Marlins  21811500
+## 530 2008  HOU       53.41615                Houston Astros  88930414
+## 531 2008  KCA       46.29630            Kansas City Royals  58245500
+## 532 2008  LAA       61.72840 Los Angeles Angels of Anaheim 119216333
+## 533 2008  LAN       51.85185           Los Angeles Dodgers 118588536
+## 534 2008  MIL       55.55556             Milwaukee Brewers  80937499
+## 535 2008  MIN       53.98773               Minnesota Twins  56932766
+## 536 2008  NYA       54.93827              New York Yankees 207896789
+## 537 2008  NYN       54.93827                 New York Mets 137793376
+## 538 2008  OAK       46.58385             Oakland Athletics  47967126
+## 539 2008  PHI       56.79012         Philadelphia Phillies  97879880
+## 540 2008  PIT       41.35802            Pittsburgh Pirates  48689783
+## 541 2008  SDN       38.88889              San Diego Padres  73677616
+## 542 2008  SEA       37.65432              Seattle Mariners 117666482
+## 543 2008  SFN       44.44444          San Francisco Giants  76594500
+## 544 2008  SLN       53.08642           St. Louis Cardinals  99624449
+## 545 2008  TBA       59.87654                Tampa Bay Rays  43820597
+## 546 2008  TEX       48.76543                 Texas Rangers  67712326
+## 547 2008  TOR       53.08642             Toronto Blue Jays  97793900
+## 548 2008  WAS       36.64596          Washington Nationals  54961000
+## 549 2009  ARI       43.20988          Arizona Diamondbacks  73115666
+## 550 2009  ATL       53.08642                Atlanta Braves  96726166
+## 551 2009  BAL       39.50617             Baltimore Orioles  67101666
+## 552 2009  BOS       58.64198                Boston Red Sox 121345999
+## 553 2009  CHA       48.76543             Chicago White Sox  96068500
+## 554 2009  CHN       51.55280                  Chicago Cubs 134809000
+## 555 2009  CIN       48.14815               Cincinnati Reds  73558500
+## 556 2009  CLE       40.12346             Cleveland Indians  81579166
+## 557 2009  COL       56.79012              Colorado Rockies  75201000
+## 558 2009  DET       52.76074                Detroit Tigers 115085145
+## 559 2009  FLO       53.70370               Florida Marlins  36834000
+## 560 2009  HOU       45.67901                Houston Astros 102996414
+## 561 2009  KCA       40.12346            Kansas City Royals  70519333
+## 562 2009  LAA       59.87654 Los Angeles Angels of Anaheim 113709000
+## 563 2009  LAN       58.64198           Los Angeles Dodgers 100414592
+## 564 2009  MIL       49.38272             Milwaukee Brewers  80182502
+## 565 2009  MIN       53.37423               Minnesota Twins  65299266
+## 566 2009  NYA       63.58025              New York Yankees 201449189
+## 567 2009  NYN       43.20988                 New York Mets 149373987
+## 568 2009  OAK       46.29630             Oakland Athletics  61910000
+## 569 2009  PHI       57.40741         Philadelphia Phillies 113004046
+## 570 2009  PIT       38.50932            Pittsburgh Pirates  48693000
+## 571 2009  SDN       46.29630              San Diego Padres  43333700
+## 572 2009  SEA       52.46914              Seattle Mariners  98904166
+## 573 2009  SFN       54.32099          San Francisco Giants  83026450
+## 574 2009  SLN       56.17284           St. Louis Cardinals  88528409
+## 575 2009  TBA       51.85185                Tampa Bay Rays  63313034
+## 576 2009  TEX       53.70370                 Texas Rangers  68178798
+## 577 2009  TOR       46.29630             Toronto Blue Jays  80538300
+## 578 2009  WAS       36.41975          Washington Nationals  59928000
+## 579 2010  ARI       40.12346          Arizona Diamondbacks  60718166
+## 580 2010  ATL       56.17284                Atlanta Braves  84423666
+## 581 2010  BAL       40.74074             Baltimore Orioles  81612500
+## 582 2010  BOS       54.93827                Boston Red Sox 162447333
+## 583 2010  CHA       54.32099             Chicago White Sox 105530000
+## 584 2010  CHN       46.29630                  Chicago Cubs 146609000
+## 585 2010  CIN       56.17284               Cincinnati Reds  71761542
+## 586 2010  CLE       42.59259             Cleveland Indians  61203966
+## 587 2010  COL       51.23457              Colorado Rockies  84227000
+## 588 2010  DET       50.00000                Detroit Tigers 122864928
+## 589 2010  FLO       49.38272               Florida Marlins  57029719
+## 590 2010  HOU       46.91358                Houston Astros  92355500
+## 591 2010  KCA       41.35802            Kansas City Royals  71405210
+## 592 2010  LAA       49.38272 Los Angeles Angels of Anaheim 104963866
+## 593 2010  LAN       49.38272           Los Angeles Dodgers  95358016
+## 594 2010  MIL       47.53086             Milwaukee Brewers  81108278
+## 595 2010  MIN       58.02469               Minnesota Twins  97559166
+## 596 2010  NYA       58.64198              New York Yankees 206333389
+## 597 2010  NYN       48.76543                 New York Mets 134422942
+## 598 2010  OAK       50.00000             Oakland Athletics  55254900
+## 599 2010  PHI       59.87654         Philadelphia Phillies 141928379
+## 600 2010  PIT       35.18519            Pittsburgh Pirates  34943000
+## 601 2010  SDN       55.55556              San Diego Padres  37799300
+## 602 2010  SEA       37.65432              Seattle Mariners  86510000
+## 603 2010  SFN       56.79012          San Francisco Giants  98641333
+## 604 2010  SLN       53.08642           St. Louis Cardinals  93540751
+## 605 2010  TBA       59.25926                Tampa Bay Rays  71923471
+## 606 2010  TEX       55.55556                 Texas Rangers  55250544
+## 607 2010  TOR       52.46914             Toronto Blue Jays  62234000
+## 608 2010  WAS       42.59259          Washington Nationals  61400000
+## 609 2011  ARI       58.02469          Arizona Diamondbacks  53639833
+## 610 2011  ATL       54.93827                Atlanta Braves  87002692
+## 611 2011  BAL       42.59259             Baltimore Orioles  85304038
+## 612 2011  BOS       55.55556                Boston Red Sox 161762475
+## 613 2011  CHA       48.76543             Chicago White Sox 127789000
+## 614 2011  CHN       43.82716                  Chicago Cubs 125047329
+## 615 2011  CIN       48.76543               Cincinnati Reds  75947134
+## 616 2011  CLE       49.38272             Cleveland Indians  48776566
+## 617 2011  COL       45.06173              Colorado Rockies  88148071
+## 618 2011  DET       58.64198                Detroit Tigers 105700231
+## 619 2011  FLO       44.44444               Florida Marlins  56944000
+## 620 2011  HOU       34.56790                Houston Astros  70694000
+## 621 2011  KCA       43.82716            Kansas City Royals  35712000
+## 622 2011  LAA       53.08642 Los Angeles Angels of Anaheim 138543166
+## 623 2011  LAN       50.93168           Los Angeles Dodgers 104188999
+## 624 2011  MIL       59.25926             Milwaukee Brewers  85497333
+## 625 2011  MIN       38.88889               Minnesota Twins 112737000
+## 626 2011  NYA       59.87654              New York Yankees 202275028
+## 627 2011  NYN       47.53086                 New York Mets 118847309
+## 628 2011  OAK       45.67901             Oakland Athletics  66536500
+## 629 2011  PHI       62.96296         Philadelphia Phillies 172976379
+## 630 2011  PIT       44.44444            Pittsburgh Pirates  45047000
+## 631 2011  SDN       43.82716              San Diego Padres  45869140
+## 632 2011  SEA       41.35802              Seattle Mariners  86110600
+## 633 2011  SFN       53.08642          San Francisco Giants 118198333
+## 634 2011  SLN       55.55556           St. Louis Cardinals 105433572
+## 635 2011  TBA       56.17284                Tampa Bay Rays  41053571
+## 636 2011  TEX       59.25926                 Texas Rangers  92299264
+## 637 2011  TOR       50.00000             Toronto Blue Jays  62567800
+## 638 2011  WAS       49.68944          Washington Nationals  63856928
+## 639 2012  ARI       50.00000          Arizona Diamondbacks  73804833
+## 640 2012  ATL       58.02469                Atlanta Braves  82829942
+## 641 2012  BAL       57.40741             Baltimore Orioles  77353999
+## 642 2012  BOS       42.59259                Boston Red Sox 173186617
+## 643 2012  CHA       52.46914             Chicago White Sox  96919500
+## 644 2012  CHN       37.65432                  Chicago Cubs  88197033
+## 645 2012  CIN       59.87654               Cincinnati Reds  82203616
+## 646 2012  CLE       41.97531             Cleveland Indians  78430300
+## 647 2012  COL       39.50617              Colorado Rockies  78069571
+## 648 2012  DET       54.32099                Detroit Tigers 132300000
+## 649 2012  HOU       33.95062                Houston Astros  60651000
+## 650 2012  KCA       44.44444            Kansas City Royals  60916225
+## 651 2012  LAA       54.93827 Los Angeles Angels of Anaheim 154485166
+## 652 2012  LAN       53.08642           Los Angeles Dodgers  95143575
+## 653 2012  MIA       42.59259               Florida Marlins 118078000
+## 654 2012  MIL       51.23457             Milwaukee Brewers  97653944
+## 655 2012  MIN       40.74074               Minnesota Twins  94085000
+## 656 2012  NYA       58.64198              New York Yankees 196522289
+## 657 2012  NYN       45.67901                 New York Mets  93353983
+## 658 2012  OAK       58.02469             Oakland Athletics  55372500
+## 659 2012  PHI       50.00000         Philadelphia Phillies 174538938
+## 660 2012  PIT       48.76543            Pittsburgh Pirates  62951999
+## 661 2012  SDN       46.91358              San Diego Padres  55244700
+## 662 2012  SEA       46.29630              Seattle Mariners  81978100
+## 663 2012  SFN       58.02469          San Francisco Giants 117620683
+## 664 2012  SLN       54.32099           St. Louis Cardinals 110300862
+## 665 2012  TBA       55.55556                Tampa Bay Rays  64173500
+## 666 2012  TEX       57.40741                 Texas Rangers 120510974
+## 667 2012  TOR       45.06173             Toronto Blue Jays  75009200
+## 668 2012  WAS       60.49383          Washington Nationals  80855143
+## 669 2013  ARI       50.00000          Arizona Diamondbacks  90132000
+## 670 2013  ATL       59.25926                Atlanta Braves  87871525
+## 671 2013  BAL       52.46914             Baltimore Orioles  84393333
+## 672 2013  BOS       59.87654                Boston Red Sox 151530000
+## 673 2013  CHA       38.88889             Chicago White Sox 120065277
+## 674 2013  CHN       40.74074                  Chicago Cubs 100567726
+## 675 2013  CIN       55.55556               Cincinnati Reds 106404462
+## 676 2013  CLE       56.79012             Cleveland Indians  75771800
+## 677 2013  COL       45.67901              Colorado Rockies  74409071
+## 678 2013  DET       57.40741                Detroit Tigers 145989500
+## 679 2013  HOU       31.48148                Houston Astros  17890700
+## 680 2013  KCA       53.08642            Kansas City Royals  80091725
+## 681 2013  LAA       48.14815 Los Angeles Angels of Anaheim 124174750
+## 682 2013  LAN       56.79012           Los Angeles Dodgers 223362196
+## 683 2013  MIA       38.27160               Florida Marlins  33601900
+## 684 2013  MIL       45.67901             Milwaukee Brewers  76947033
+## 685 2013  MIN       40.74074               Minnesota Twins  75337500
+## 686 2013  NYA       52.46914              New York Yankees 231978886
+## 687 2013  NYN       45.67901                 New York Mets  49448346
+## 688 2013  OAK       59.25926             Oakland Athletics  60132500
+## 689 2013  PHI       45.06173         Philadelphia Phillies 169863189
+## 690 2013  PIT       58.02469            Pittsburgh Pirates  77062000
+## 691 2013  SDN       46.91358              San Diego Padres  65585500
+## 692 2013  SEA       43.82716              Seattle Mariners  74005043
+## 693 2013  SFN       46.91358          San Francisco Giants 140180334
+## 694 2013  SLN       59.87654           St. Louis Cardinals  92260110
+## 695 2013  TBA       56.44172                Tampa Bay Rays  52955272
+## 696 2013  TEX       55.82822                 Texas Rangers 112522600
+## 697 2013  TOR       45.67901             Toronto Blue Jays 126288100
+## 698 2013  WAS       53.08642          Washington Nationals 113703270
+## 699 2014  ARI       39.50617          Arizona Diamondbacks  97861500
+## 700 2014  ATL       48.76543                Atlanta Braves  97609000
+## 701 2014  BAL       59.25926             Baltimore Orioles 103416000
+## 702 2014  BOS       43.82716                Boston Red Sox 139019929
+## 703 2014  CHA       45.06173             Chicago White Sox  81830500
+## 704 2014  CHN       45.06173                  Chicago Cubs  65522500
+## 705 2014  CIN       46.91358               Cincinnati Reds 108217500
+## 706 2014  CLE       52.46914             Cleveland Indians  82151899
+## 707 2014  COL       40.74074              Colorado Rockies  95403500
+## 708 2014  DET       55.55556                Detroit Tigers 152855500
+## 709 2014  HOU       43.20988                Houston Astros  35116300
+## 710 2014  KCA       54.93827            Kansas City Royals  74594075
+## 711 2014  LAA       60.49383 Los Angeles Angels of Anaheim 121988250
+## 712 2014  LAN       58.02469           Los Angeles Dodgers 217014600
+## 713 2014  MIA       47.53086               Florida Marlins  41836900
+## 714 2014  MIL       50.61728             Milwaukee Brewers 101217000
+## 715 2014  MIN       43.20988               Minnesota Twins  83762500
+## 716 2014  NYA       51.85185              New York Yankees 197543907
+## 717 2014  NYN       48.76543                 New York Mets  85556990
+## 718 2014  OAK       54.32099             Oakland Athletics  72408400
+## 719 2014  PHI       45.06173         Philadelphia Phillies 180944967
+## 720 2014  PIT       54.32099            Pittsburgh Pirates  77178000
+## 721 2014  SDN       47.53086              San Diego Padres  75685700
+## 722 2014  SEA       53.70370              Seattle Mariners  92531100
+## 723 2014  SFN       54.32099          San Francisco Giants 163510167
+## 724 2014  SLN       55.55556           St. Louis Cardinals 120693000
+## 725 2014  TBA       47.53086                Tampa Bay Rays  72689100
+## 726 2014  TEX       41.35802                 Texas Rangers 112255059
+## 727 2014  TOR       51.23457             Toronto Blue Jays 109920100
+## 728 2014  WAS       59.25926          Washington Nationals 131983680
+\end{verbatim}
+
+\hypertarget{exploratory-data-analysis}{%
+\section{Exploratory data analysis}\label{exploratory-data-analysis}}
+
+\hypertarget{payroll-distribution}{%
+\subsection{Payroll distribution}\label{payroll-distribution}}
+
+\hypertarget{problem-2.-write-code-to-produce-a-plot-or-plots-that-shows-the-distribution-of-payrolls-across-teams-conditioned-on-year-from-1990-2014.-note-you-may-create-a-single-plot-as-long-as-the-distributions-for-each-year-are-clearly-distinguishable-e.g.-a-single-plot-overlaying-histograms-is-not-ok.}{%
+\subsubsection{Problem 2. Write code to produce a plot (or plots) that
+shows the distribution of payrolls across teams conditioned on year
+(from 1990-2014). Note: you may create a single plot as long as the
+distributions for each year are clearly distinguishable (e.g., a single
+plot overlaying histograms is not
+OK).}\label{problem-2.-write-code-to-produce-a-plot-or-plots-that-shows-the-distribution-of-payrolls-across-teams-conditioned-on-year-from-1990-2014.-note-you-may-create-a-single-plot-as-long-as-the-distributions-for-each-year-are-clearly-distinguishable-e.g.-a-single-plot-overlaying-histograms-is-not-ok.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+
+\NormalTok{winpay }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(team) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{log_payroll =} \KeywordTok{log}\NormalTok{(payroll)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{yearRange =} \KeywordTok{ifelse}\NormalTok{(}\DecValTok{1989} \OperatorTok{<}\StringTok{ }\NormalTok{year }\OperatorTok{&}\StringTok{ }\NormalTok{year }\OperatorTok{<=}\StringTok{ }\DecValTok{1994}\NormalTok{, }\KeywordTok{paste}\NormalTok{(}\StringTok{"1989-1994"}\NormalTok{),}
+                \KeywordTok{ifelse}\NormalTok{(}\DecValTok{1994} \OperatorTok{<}\StringTok{ }\NormalTok{year }\OperatorTok{&}\StringTok{ }\NormalTok{year }\OperatorTok{<=}\StringTok{ }\DecValTok{1999}\NormalTok{, }\KeywordTok{paste}\NormalTok{(}\StringTok{"1994-1999"}\NormalTok{),}
+                \KeywordTok{ifelse}\NormalTok{(}\DecValTok{1999} \OperatorTok{<}\StringTok{ }\NormalTok{year }\OperatorTok{&}\StringTok{ }\NormalTok{year }\OperatorTok{<=}\StringTok{ }\DecValTok{2004}\NormalTok{, }\KeywordTok{paste}\NormalTok{(}\StringTok{"1999-2004"}\NormalTok{),}
+                \KeywordTok{ifelse}\NormalTok{(}\DecValTok{2004} \OperatorTok{<}\StringTok{ }\NormalTok{year }\OperatorTok{&}\StringTok{ }\NormalTok{year }\OperatorTok{<=}\StringTok{ }\DecValTok{2009}\NormalTok{, }\KeywordTok{paste}\NormalTok{(}\StringTok{"2004-2009"}\NormalTok{),}
+                       \KeywordTok{paste}\NormalTok{(}\StringTok{"2009-2014"}\NormalTok{)))))) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{yearRange, }\DataTypeTok{y=}\NormalTok{log_payroll)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x=}\StringTok{"Year Range"}\NormalTok{, }\DataTypeTok{y=}\StringTok{"Log Payroll"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{project2_files/figure-latex/plot-1.pdf}
+
+\hypertarget{question-1.-what-statements-can-you-make-about-the-distribution-of-payrolls-conditioned-on-time-based-on-these-plots-remember-you-can-make-statements-in-terms-of-central-tendency-spread-etc.}{%
+\paragraph{Question 1. What statements can you make about the
+distribution of payrolls conditioned on time based on these plots?
+Remember you can make statements in terms of central tendency, spread,
+etc.}\label{question-1.-what-statements-can-you-make-about-the-distribution-of-payrolls-conditioned-on-time-based-on-these-plots-remember-you-can-make-statements-in-terms-of-central-tendency-spread-etc.}}
+
+There is a clear increasing central tendency, although it seems the
+spread of the data has also slightly increased over time as well. It can
+also be seen that the upper end of the payroll scale seemed to flatten
+out after 2004. Most of the outliers reside on the lower end of the
+payroll scale, whereas at the upper end there is only one outlier.
+
+\hypertarget{problem-3.-write-code-to-produce-a-plot-or-plots-that-specifically-shows-at-least-one-of-the-statements-you-made-in-question-1.-for-example-if-you-make-a-statement-that-there-is-a-trend-for-payrolls-to-decrease-over-time-make-a-plot-of-a-statistic-for-central-tendency-e.g.-mean-payroll-vs.time-to-show-that-specifically.}{%
+\subsubsection{Problem 3. Write code to produce a plot (or plots) that
+specifically shows at least one of the statements you made in Question
+1. For example, if you make a statement that there is a trend for
+payrolls to decrease over time, make a plot of a statistic for central
+tendency (e.g., mean payroll) vs.~time to show that
+specifically.}\label{problem-3.-write-code-to-produce-a-plot-or-plots-that-specifically-shows-at-least-one-of-the-statements-you-made-in-question-1.-for-example-if-you-make-a-statement-that-there-is-a-trend-for-payrolls-to-decrease-over-time-make-a-plot-of-a-statistic-for-central-tendency-e.g.-mean-payroll-vs.time-to-show-that-specifically.}}
+
+The statement I am going to prove is that the maximum payrolls stopped
+increasing significantly after 2004. I did this by graphing strictly the
+max payrolls between the years 1990 and 2014. The graph clearly shows a
+steep decline in the slope of the graph after 2005, showing that the top
+payrolls stopped increasing at that point.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{select} \DataTypeTok{year}\NormalTok{, }\FunctionTok{max}\NormalTok{(payroll) }\KeywordTok{as}\NormalTok{ max_payroll}
+\KeywordTok{from}
+\NormalTok{  (}\KeywordTok{select}\NormalTok{ Salaries.yearID }\KeywordTok{as} \DataTypeTok{year}\NormalTok{, }
+\NormalTok{    Teams.teamID }\KeywordTok{as}\NormalTok{ team, }
+    \FunctionTok{sum}\NormalTok{(Salaries.salary) }\KeywordTok{as}\NormalTok{ payroll}
+  \KeywordTok{from}\NormalTok{ Salaries}
+  \KeywordTok{join}\NormalTok{ Teams}
+  \KeywordTok{on}\NormalTok{ Salaries.teamID = Teams.teamID}
+  \KeywordTok{and}\NormalTok{ Salaries.yearID = Teams.yearID}
+  \KeywordTok{where} \DataTypeTok{year} \KeywordTok{between} \DecValTok{1990} \KeywordTok{and} \DecValTok{2014}
+  \KeywordTok{group} \KeywordTok{by} \DataTypeTok{year}\NormalTok{, team)}
+\KeywordTok{group} \KeywordTok{by} \DataTypeTok{year}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{max_df }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{log_payroll =} \KeywordTok{log}\NormalTok{(max_payroll)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{year, }\DataTypeTok{y=}\NormalTok{log_payroll)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{project2_files/figure-latex/max_plot-1.pdf}
+
+\hypertarget{correlation-between-payroll-and-winning-percentage}{%
+\section{Correlation between payroll and winning
+percentage}\label{correlation-between-payroll-and-winning-percentage}}
+
+\hypertarget{problem-4.-write-code-to-discretize-year-into-five-time-periods-e.g.-using-the-cut-function-with-parameter-breaks5-in-r-bins5-in-python-and-then-make-a-scatterplot-showing-mean-winning-percentage-y-axis-vs.mean-payroll-x-axis-for-each-of-the-five-time-periods.-you-could-add-a-regression-line-using-geom_smoothmethodlm-in-each-scatter-plot-to-ease-interpretation.-note-look-at-the-discussion-on-faceting-in-the-visualization-eda-lecture-notes.}{%
+\subsubsection{Problem 4. Write code to discretize year into five time
+periods (e.g., using the cut function with parameter breaks=5 (in R,
+bins=5 in python) and then make a scatterplot showing mean winning
+percentage (y-axis) vs.~mean payroll (x-axis) for each of the five time
+periods. You could add a regression line (using geom\_smooth(method=lm))
+in each scatter plot to ease interpretation. Note: look at the
+discussion on faceting in the visualization EDA lecture
+notes.}\label{problem-4.-write-code-to-discretize-year-into-five-time-periods-e.g.-using-the-cut-function-with-parameter-breaks5-in-r-bins5-in-python-and-then-make-a-scatterplot-showing-mean-winning-percentage-y-axis-vs.mean-payroll-x-axis-for-each-of-the-five-time-periods.-you-could-add-a-regression-line-using-geom_smoothmethodlm-in-each-scatter-plot-to-ease-interpretation.-note-look-at-the-discussion-on-faceting-in-the-visualization-eda-lecture-notes.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{winpay}\OperatorTok{$}\NormalTok{year_range <-}\StringTok{ }\KeywordTok{cut}\NormalTok{(winpay}\OperatorTok{$}\NormalTok{year, }\DataTypeTok{breaks=}\DecValTok{5}\NormalTok{)}
+\NormalTok{winpay}\OperatorTok{$}\NormalTok{Franchise[winpay}\OperatorTok{$}\NormalTok{franchName }\OperatorTok{!=}\StringTok{ 'Oakland Athletics'}\NormalTok{] <-}\StringTok{ 'Other'}
+\NormalTok{winpay}\OperatorTok{$}\NormalTok{Franchise[winpay}\OperatorTok{$}\NormalTok{franchName }\OperatorTok{==}\StringTok{ 'Oakland Athletics'}\NormalTok{] <-}\StringTok{ 'Oakland'}
+\NormalTok{winpay }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{log_payroll =} \KeywordTok{log}\NormalTok{(payroll)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{log_payroll, }\DataTypeTok{y=}\NormalTok{win_percentage, }\DataTypeTok{color=}\NormalTok{Franchise)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title=}\StringTok{'Win Percentage vs Payroll'}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\OperatorTok{~}\NormalTok{year_range) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method=}\NormalTok{lm, }\DataTypeTok{color=}\StringTok{'blue'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{project2_files/figure-latex/time_periods-1.pdf}
+
+\hypertarget{question-2.-what-can-you-say-about-team-payrolls-across-these-periods-are-there-any-teams-that-standout-as-being-particularly-good-at-paying-for-wins-across-these-time-periods-what-can-you-say-about-the-oakland-as-spending-efficiency-across-these-time-periods-labeling-some-points-in-the-scatterplot-can-help-interpretation.}{%
+\paragraph{Question 2. What can you say about team payrolls across these
+periods? Are there any teams that standout as being particularly good at
+paying for wins across these time periods? What can you say about the
+Oakland A's spending efficiency across these time periods (labeling some
+points in the scatterplot can help
+interpretation).}\label{question-2.-what-can-you-say-about-team-payrolls-across-these-periods-are-there-any-teams-that-standout-as-being-particularly-good-at-paying-for-wins-across-these-time-periods-what-can-you-say-about-the-oakland-as-spending-efficiency-across-these-time-periods-labeling-some-points-in-the-scatterplot-can-help-interpretation.}}
+
+I can say that, as a general trend, win percentages increase as a team's
+payroll increases, but there's so much variance in these plots that it
+is hard to call this a strong correlation relationship. It seems that
+the time period when these two variables were most strongly correlated
+was the 1995 to 2000 time period. The Oakland A's spending efficiency
+seems to be solid. Across the five time periods, as they generally end
+to be either above the mean, or very close to it, except for the 1990 to
+1995 time range.
+
+\hypertarget{data-transformations}{%
+\section{Data transformations}\label{data-transformations}}
+
+\hypertarget{standardization-across-years}{%
+\subsection{Standardization across
+years}\label{standardization-across-years}}
+
+\hypertarget{problem-5.-write-code-to-create-a-new-variable-in-your-dataset-that-standardizes-payroll-conditioned-on-year.}{%
+\subsubsection{Problem 5. Write code to create a new variable in your
+dataset that standardizes payroll conditioned on
+year.}\label{problem-5.-write-code-to-create-a-new-variable-in-your-dataset-that-standardizes-payroll-conditioned-on-year.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{payroll_mew =}\StringTok{ }\KeywordTok{array}\NormalTok{()}
+\NormalTok{payroll_sigma =}\StringTok{ }\KeywordTok{array}\NormalTok{()}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1990}\OperatorTok{:}\DecValTok{2014}\NormalTok{) \{}
+\NormalTok{  payroll_mew[i }\OperatorTok{-}\StringTok{ }\DecValTok{1990} \OperatorTok{+}\StringTok{ }\DecValTok{1}\NormalTok{] <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(}\KeywordTok{filter}\NormalTok{(winpay, year}\OperatorTok{==}\NormalTok{i)}\OperatorTok{$}\NormalTok{payroll)}
+\NormalTok{  payroll_sigma[i }\OperatorTok{-}\StringTok{ }\DecValTok{1990} \OperatorTok{+}\StringTok{ }\DecValTok{1}\NormalTok{] <-}\StringTok{ }\KeywordTok{sd}\NormalTok{(}\KeywordTok{filter}\NormalTok{(winpay, year}\OperatorTok{==}\NormalTok{i)}\OperatorTok{$}\NormalTok{payroll)}
+\NormalTok{\}}
+
+
+\NormalTok{winpay <-}\StringTok{ }\NormalTok{winpay }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Payroll_Z_Score =} 
+\NormalTok{(payroll }\OperatorTok{-}\StringTok{ }\NormalTok{payroll_mew[year }\OperatorTok{-}\StringTok{ }\DecValTok{1990} \OperatorTok{+}\StringTok{ }\DecValTok{1}\NormalTok{]) }\OperatorTok{/}\StringTok{ }\NormalTok{payroll_sigma[year }\OperatorTok{-}\StringTok{ }\DecValTok{1990} \OperatorTok{+}\StringTok{ }\DecValTok{1}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{problem-6.-repeat-the-same-plots-as-problem-4-but-use-this-new-standardized-payroll-variable.}{%
+\subsubsection{Problem 6. Repeat the same plots as Problem 4, but use
+this new standardized payroll
+variable.}\label{problem-6.-repeat-the-same-plots-as-problem-4-but-use-this-new-standardized-payroll-variable.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{winpay }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{Payroll_Z_Score, }\DataTypeTok{y=}\NormalTok{win_percentage, }\DataTypeTok{color=}\NormalTok{Franchise)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title=}\StringTok{'Win Percentage vs Payroll Z-Score'}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\OperatorTok{~}\NormalTok{year_range) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method=}\NormalTok{lm, }\DataTypeTok{color=}\StringTok{'blue'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{project2_files/figure-latex/standardized_plot-1.pdf}
+
+\hypertarget{question-3.-discuss-how-the-plots-from-problem-4-and-problem-6-reflect-the-transformation-you-did-on-the-payroll-variable.-consider-data-range-center-and-spread-along-with-observed-correlation-in-your-discussion.-some-of-these-change-after-the-transformation-others-dont.}{%
+\paragraph{Question 3. Discuss how the plots from Problem 4 and Problem
+6 reflect the transformation you did on the payroll variable. Consider
+data range, center and spread along with observed correlation in your
+discussion. Some of these change after the transformation, others
+don't.}\label{question-3.-discuss-how-the-plots-from-problem-4-and-problem-6-reflect-the-transformation-you-did-on-the-payroll-variable.-consider-data-range-center-and-spread-along-with-observed-correlation-in-your-discussion.-some-of-these-change-after-the-transformation-others-dont.}}
+
+The most obvious difference is the slope of the trendline has noticably
+increased, albeit not dramatically. The variance of the data has
+increased slightly, contributing to the increase in the trendline, but
+is still nearly the same. Each graph is also centered around x=0,
+whereas the graphs in problem 4 had their own center-point making them
+harder to compare. Also each graph shows that at x=0, the win percentage
+is consistently 50\%, implying when a team has the average payroll
+amount, they win 50\% of the time.
+
+\hypertarget{expected-wins}{%
+\section{Expected wins}\label{expected-wins}}
+
+\hypertarget{problem-7.-make-a-single-scatter-plot-of-winning-percentage-y-axis-vs.standardized-payroll-x-axis.-add-a-regression-line-to-highlight-the-relationship-again-using-geom_smoothmethodlm.}{%
+\subsubsection{Problem 7. Make a single scatter plot of winning
+percentage (y-axis) vs.~standardized payroll (x-axis). Add a regression
+line to highlight the relationship (again using
+geom\_smooth(method=lm)).}\label{problem-7.-make-a-single-scatter-plot-of-winning-percentage-y-axis-vs.standardized-payroll-x-axis.-add-a-regression-line-to-highlight-the-relationship-again-using-geom_smoothmethodlm.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{winpay }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{Payroll_Z_Score, }\DataTypeTok{y=}\NormalTok{win_percentage)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method=}\NormalTok{lm)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{project2_files/figure-latex/plot_all-1.pdf}
+
+\hypertarget{spending-efficiency}{%
+\section{Spending efficiency}\label{spending-efficiency}}
+
+\hypertarget{problem-8.-write-code-to-calculate-spending-efficiency-for-each-team.-make-a-line-plot-with-year-on-the-x-axis-and-efficiency-on-the-y-axis.-a-good-set-of-teams-to-plot-are-oakland-the-new-york-yankees-boston-atlanta-and-tampa-bay-teamids-oak-bos-nya-atl-tba.-that-plot-can-be-hard-to-read-since-there-is-so-much-year-to-year-variation-for-each-team.-one-way-to-improve-it-is-to-use-geom_smooth-instead-of-geom_line.}{%
+\subsubsection{Problem 8. Write code to calculate spending efficiency
+for each team. Make a line plot with year on the x-axis and efficiency
+on the y-axis. A good set of teams to plot are Oakland, the New York
+Yankees, Boston, Atlanta and Tampa Bay (teamIDs OAK, BOS, NYA, ATL,
+TBA). That plot can be hard to read since there is so much year to year
+variation for each team. One way to improve it is to use geom\_smooth
+instead of
+geom\_line.}\label{problem-8.-write-code-to-calculate-spending-efficiency-for-each-team.-make-a-line-plot-with-year-on-the-x-axis-and-efficiency-on-the-y-axis.-a-good-set-of-teams-to-plot-are-oakland-the-new-york-yankees-boston-atlanta-and-tampa-bay-teamids-oak-bos-nya-atl-tba.-that-plot-can-be-hard-to-read-since-there-is-so-much-year-to-year-variation-for-each-team.-one-way-to-improve-it-is-to-use-geom_smooth-instead-of-geom_line.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{winpay }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{expected_win_pct =} \DecValTok{50} \OperatorTok{+}\StringTok{ }\FloatTok{2.5} \OperatorTok{*}\StringTok{ }\NormalTok{Payroll_Z_Score) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{efficiency =}\NormalTok{ win_percentage }\OperatorTok{-}\StringTok{ }\NormalTok{expected_win_pct) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{team =} 
+           \KeywordTok{ifelse}\NormalTok{(}
+\NormalTok{             team }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{'OAK'}\NormalTok{, }\StringTok{'BOS'}\NormalTok{, }\StringTok{'NYA'}\NormalTok{, }\StringTok{'ATL'}\NormalTok{, }\StringTok{'TBA'}\NormalTok{), }
+\NormalTok{             team, }\StringTok{'OTHER'}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{year, }\DataTypeTok{y=}\NormalTok{efficiency, }\DataTypeTok{color=}\NormalTok{team)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method=}\NormalTok{loess)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{project2_files/figure-latex/effic-1.pdf}
+
+\hypertarget{question-4.-what-can-you-learn-from-this-plot-compared-to-the-set-of-plots-you-looked-at-in-question-2-and-3-how-good-was-oaklands-efficiency-during-the-moneyball-period}{%
+\paragraph{Question 4. What can you learn from this plot compared to the
+set of plots you looked at in Question 2 and 3? How good was Oakland's
+efficiency during the Moneyball
+period?}\label{question-4.-what-can-you-learn-from-this-plot-compared-to-the-set-of-plots-you-looked-at-in-question-2-and-3-how-good-was-oaklands-efficiency-during-the-moneyball-period}}
+
+This plot provides significantly more valuable information than the
+plots from questions 2 and 3. This plot shows which teams are worth
+analyzing based on their efficiency over time. For example, if I were
+going to start a baseball team, I would analyze Oakland's strategies for
+team building in 2002, where they had an efficiency of 16.3\% despite
+consistently being at the lower end of the payroll spectrum. Oakland's
+efficiency during the Moneyball period was excellent. As this chart
+shows, Oakland started off with about average efficiency, then
+gradually, throug the 1990s, their win percentage went up and up until
+it peaked in 2002. During the Moneyball period Oakland's win percentage
+was substantially above average and their win percentage stayed above
+average until roughly 2015.
+
+\end{document}

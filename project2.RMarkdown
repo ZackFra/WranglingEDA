@@ -35,7 +35,7 @@ group by year, team
 ```
 
 ```{r display}
-head(winpay)
+winpay
 ```
 # Exploratory data analysis
 
@@ -63,11 +63,11 @@ winpay %>%
 
 #### Question 1. What statements can you make about the distribution of payrolls conditioned on time based on these plots? Remember you can make statements in terms of central tendency, spread, etc.
 
-There is a clear increasing central tendency, although it seems the spread of the data has also slightly increased over time as well. It can also be seen that the upper end of the payroll scale seemed to flatten out after 2004. Most of the outliers reside on the lower end of the payroll scale, whereas at the upper end there is only one.
+There is a clear increasing central tendency, although it seems the spread of the data has also slightly increased over time as well. It can also be seen that the upper end of the payroll scale seemed to flatten out after 2004. Most of the outliers reside on the lower end of the payroll scale, whereas at the upper end there is only one outlier.
 
 ### Problem 3. Write code to produce a plot (or plots) that specifically shows at least one of the statements you made in Question 1. For example, if you make a statement that there is a trend for payrolls to decrease over time, make a plot of a statistic for central tendency (e.g., mean payroll) vs. time to show that specifically.
 
-The statement I am going to prove is that the maximum payrolls stopped increasing significantly after 2004. I did this by graphing strictly the max payrolls between the years 1990 and 2014. The graph clearly shows a steep decline in the slope of the graph after 2005, showing that the payrolls stopped increasing as sharply at that point.
+The statement I am going to prove is that the maximum payrolls stopped increasing significantly after 2004. I did this by graphing strictly the max payrolls between the years 1990 and 2014. The graph clearly shows a steep decline in the slope of the graph after 2005, showing that the top payrolls stopped increasing at that point.
 
 
 ```{sql max, connection=db, output.var="max_df"}
@@ -114,7 +114,7 @@ winpay %>%
 
 #### Question 2. What can you say about team payrolls across these periods? Are there any teams that standout as being particularly good at paying for wins across these time periods? What can you say about the Oakland A’s spending efficiency across these time periods (labeling some points in the scatterplot can help interpretation).
 
-I can say that as a general trend, win percentages increase as a team's payroll increases, but there's so much variance in these plots that it is hard to call this a strong causation relationship. It seems that the time period when these two variables were most strongly correlated was the 1995 to 2000 time period. The Oakland A's spending efficiency seems to be solid. Acroess the five time periods, they generally end to be either above the mean, or very close to it, except for the 1990-1995 time range.
+I can say that, as a general trend, win percentages increase as a team's payroll increases, but there's so much variance in these plots that it is hard to call this a strong correlation relationship. It seems that the time period when these two variables were most strongly correlated was the 1995 to 2000 time period. The Oakland A's spending efficiency seems to be solid. Across the five time periods, as they generally end to be either above the mean, or very close to it, except for the 1990 to 1995 time range.
 
 # Data transformations
 
@@ -152,7 +152,7 @@ winpay %>%
 
 #### Question 3. Discuss how the plots from Problem 4 and Problem 6 reflect the transformation you did on the payroll variable. Consider data range, center and spread along with observed correlation in your discussion. Some of these change after the transformation, others don’t.
 
-The most obvious difference is the slope of the trendline has noticably increased, albeit not dramatically. The variance of the data has increased slightly, contributing to the increase in the trendline, but is still nearly the same. Each graph is also centered around x=0, whereas the graphs in problem 4 each had their own center-point making them harder to compare. Also each graph shows that as x=0, the win percentage is consistently 50%, implying when a team has the average payroll amount, they win 50% of the time.
+The most obvious difference is the slope of the trendline has noticably increased, albeit not dramatically. The variance of the data has increased slightly, contributing to the increase in the trendline, but is still nearly the same. Each graph is also centered around x=0, whereas the graphs in problem 4 had their own center-point making them harder to compare. Also each graph shows that at x=0, the win percentage is consistently 50%, implying when a team has the average payroll amount, they win 50% of the time.
 
 # Expected wins
 
@@ -170,19 +170,17 @@ winpay %>%
 ### Problem 8. Write code to calculate spending efficiency for each team. Make a line plot with year on the x-axis and efficiency on the y-axis. A good set of teams to plot are Oakland, the New York Yankees, Boston, Atlanta and Tampa Bay (teamIDs OAK, BOS, NYA, ATL, TBA). That plot can be hard to read since there is so much year to year variation for each team. One way to improve it is to use geom_smooth instead of geom_line.
 
 ```{r effic}
-winpay <- winpay %>% 
+winpay %>% 
   mutate(expected_win_pct = 50 + 2.5 * Payroll_Z_Score) %>% 
   mutate(efficiency = win_percentage - expected_win_pct) %>% 
   mutate(team = 
            ifelse(
              team %in% c('OAK', 'BOS', 'NYA', 'ATL', 'TBA'), 
-             team, 'OTHER'))
-
-winpay %>% 
+             team, 'OTHER')) %>% 
   ggplot(aes(x=year, y=efficiency, color=team)) +
   geom_smooth(method=loess)
 ```
 
 #### Question 4. What can you learn from this plot compared to the set of plots you looked at in Question 2 and 3? How good was Oakland’s efficiency during the Moneyball period?
 
-This plot provides significantly more valuable information than the plots from questions 2 and 3. This plot shows which teams are worth analyzing based on their efficiency throughout time. For example, if I were going to start a baseball team, I would analyze Oakland's strategies for team building in 2002, where they had an efficiency of 16.3% despite consistently being the lower end of the payroll spectrum. Oakland's efficiency during the Moneyball period was excellent. As this chart shows, Oakland started off with about average efficiency, then gradually throughout the 1990s their win percentage went up and up until it peaked in 2002. During the Moneyball period Oakland's win percentage was substantially above average and their win percentage stayed above average at least from roughly 1997 to 2015.
+This plot provides significantly more valuable information than the plots from questions 2 and 3. This plot shows which teams are worth analyzing based on their efficiency over time. For example, if I were going to start a baseball team, I would analyze Oakland's strategies for team building in 2002, where they had an efficiency of 16.3% despite consistently being at the lower end of the payroll spectrum. Oakland's efficiency during the Moneyball period was excellent. As this chart shows, Oakland started off with about average efficiency, then gradually, throug the 1990s, their win percentage went up and up until it peaked in 2002. During the Moneyball period Oakland's win percentage was substantially above average and their win percentage stayed above average until roughly 2015.
