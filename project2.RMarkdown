@@ -102,11 +102,18 @@ max_df %>%
 winpay$year_range <- cut(winpay$year, breaks=5)
 winpay$Franchise[winpay$franchName != 'Oakland Athletics'] <- 'Other'
 winpay$Franchise[winpay$franchName == 'Oakland Athletics'] <- 'Oakland'
-winpay %>% 
-  mutate(log_payroll = log(payroll)) %>%
-  ggplot(aes(x=log_payroll, y=win_percentage, color=Franchise)) + 
-  labs(title='Win Percentage vs Payroll') +
-  facet_grid(~year_range) +
+
+
+means <- aggregate(list(winpay$payroll, winpay$win_percentage), 
+                   list(winpay$team, winpay$year_range), mean)
+colnames(means) <- c('team', 'year_range', 'mean_payroll', 'mean_win_percentage')
+
+means %>%
+  mutate(log_mean_payroll = log(mean_payroll)) %>%
+  mutate(Franchise = ifelse(team == 'OAK', 'Oakland A\'s', 'Other')) %>% 
+  ggplot(aes(x=log_mean_payroll, y=mean_win_percentage, color=Franchise)) + 
+  labs(title='Mean Win Percentage vs Mean Payroll') +
+  facet_wrap(~year_range) +
   geom_point() +
   geom_smooth(method=lm, color='blue')
 
@@ -140,10 +147,16 @@ winpay <- winpay %>%
 ### Problem 6. Repeat the same plots as Problem 4, but use this new standardized payroll variable.
 
 
-```{r standardized_plot}
-winpay %>% 
-  ggplot(aes(x=Payroll_Z_Score, y=win_percentage, color=Franchise)) + 
-  labs(title='Win Percentage vs Payroll Z-Score') +
+```{r mean_standardized_plot}
+
+st_means <- aggregate(list(winpay$Payroll_Z_Score, winpay$win_percentage), 
+                   list(winpay$team, winpay$year_range), mean)
+colnames(st_means) <- c('team', 'year_range', 'mean_st_payroll', 'mean_win_percentage')
+
+st_means %>% 
+  mutate(Franchise = ifelse(team == 'OAK', 'Oakland A\'s', 'Other')) %>% 
+  ggplot(aes(x=mean_st_payroll, y=mean_win_percentage, color=Franchise)) + 
+  labs(title='Mean Win Percentage vs Mean Payroll Z-Score') +
   facet_grid(~year_range) +
   geom_point() +
   geom_smooth(method=lm, color='blue')
