@@ -121,7 +121,7 @@ means %>%
 
 #### Question 2. What can you say about team payrolls across these periods? Are there any teams that standout as being particularly good at paying for wins across these time periods? What can you say about the Oakland A’s spending efficiency across these time periods (labeling some points in the scatterplot can help interpretation).
 
-I can say that, as a general trend, win percentages increase as a team's payroll increases, but there's so much variance in these plots that it is hard to call this a strong correlation relationship. It seems that the time period when these two variables were most strongly correlated was the 1995 to 2000 time period. The Oakland A's spending efficiency seems to be solid. Across the five time periods, as they generally end to be either above the mean, or very close to it, except for the 1990 to 1995 time range.
+I can say that, as a general trend, win percentages increase as a team's payroll increases, but there's so much variance in these plots that it is hard to call this a strong correlation relationship. It seems that the time period when these two variables were most strongly correlated was the 1995 to 2000 time period. Most of the teams seem to hover either right above or right below average in terms of payroll and win percentage. The Oakland A's win percentage is exceptional. Across the five time periods, as they generally end to be either above the mean, or very close to it, except for the 1990 to 1995 time range.
 
 # Data transformations
 
@@ -165,7 +165,7 @@ st_means %>%
 
 #### Question 3. Discuss how the plots from Problem 4 and Problem 6 reflect the transformation you did on the payroll variable. Consider data range, center and spread along with observed correlation in your discussion. Some of these change after the transformation, others don’t.
 
-The most obvious difference is the slope of the trendline has noticably increased, albeit not dramatically. The variance of the data has increased slightly, contributing to the increase in the trendline, but is still nearly the same. Each graph is also centered around x=0, whereas the graphs in problem 4 had their own center-point making them harder to compare. Also each graph shows that at x=0, the win percentage is consistently 50%, implying when a team has the average payroll amount, they win 50% of the time.
+The most obvious difference is the slope of the trendline has noticably increased. The variance of the data has increased slightly, contributing to the increase in the trendline. Each graph is also centered around x=0, whereas the graphs in problem 4 had their own center-point making them harder to compare. Also each graph shows that at x=0, the win percentage is consistently 50%, implying when a team has the average payroll amount, they win 50% of the time.
 
 # Expected wins
 
